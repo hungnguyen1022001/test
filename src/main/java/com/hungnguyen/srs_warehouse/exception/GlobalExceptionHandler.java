@@ -33,13 +33,20 @@ public class GlobalExceptionHandler {
                 .body(BaseResponseDTO.fail(ex.getMessageCode()));
     }
 
-    // Xử lý lỗi Invalid Credentials (InvalidCredentialsException)
-    @ExceptionHandler(CustomExceptions.InvalidCredentialsException.class)
-    public ResponseEntity<BaseResponseDTO<Void>> handleInvalidCredentialsException(CustomExceptions.InvalidCredentialsException ex) {
+    @ExceptionHandler(CustomExceptions.CustomException.class)
+    public ResponseEntity<BaseResponseDTO<Void>> handleCustomException(CustomExceptions.CustomException ex) {
         return ResponseEntity
                 .status(HttpStatus.BAD_REQUEST)
                 .body(BaseResponseDTO.fail(ex.getMessageCode()));
     }
+
+    @ExceptionHandler(CustomExceptions.FileGenerationException.class)
+    public ResponseEntity<BaseResponseDTO<Void>> handleFileGenerationException(CustomExceptions.FileGenerationException ex) {
+        return ResponseEntity
+                .status(HttpStatus.BAD_REQUEST)
+                .body(BaseResponseDTO.fail(ex.getMessageCode()));
+    }
+
 
 
 }
